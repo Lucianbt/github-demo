@@ -1,5 +1,5 @@
 // tests/drag-and-drop.spec.ts
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 const URL = 'https://the-internet.herokuapp.com/drag_and_drop';
 const colA = '#column-a';
@@ -7,7 +7,7 @@ const colB = '#column-b';
 const header = 'header';
 
 // HTML5 DnD helper (works in WebKit)
-async function html5DragAndDrop(page, from: string, to: string) {
+async function html5DragAndDrop(page: Page, from: string, to: string) {
   await page.evaluate(({ from, to }) => {
     const src = document.querySelector(from) as HTMLElement | null;
     const dst = document.querySelector(to) as HTMLElement | null;
