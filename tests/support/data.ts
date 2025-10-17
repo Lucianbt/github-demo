@@ -1,25 +1,25 @@
 // tests/support/data.ts
 export const Creds = {
-  password: 'example', // for WP/Woo account login
+  password: 'example',
   makeEmail: (seed: string = Date.now().toString()) => `e2e.${seed}@example.com`,
 };
 
 export const NameData = {
   validNume: ['Popescu', 'Ionescu', 'Marin'],
   validPrenume: ['Ana', 'Mihai', 'Elena'],
-  tooShort: [''], // length 0
-  tooLong: ['A'.repeat(31)], // >30
+  tooShort: [''],
+  tooLong: ['A'.repeat(31)],
   withDigits: ['Popescu2'],
-  withSymbols: ['Popescu-Ion', 'Ștefan'], // decide policy for hyphen/diacritics
+  withSymbols: ['Popescu-Ion', 'Ștefan'],
 };
 
 export const PasswordData = {
   valid: ['Parola1', 'Qa2025#', 'A1aaaa!'],
-  tooShort: ['A1a!5'], // 5
-  tooLong: ['A1' + 'a'.repeat(39) + '!'], // 42-ish
+  tooShort: ['A1a!5'],
+  tooLong: ['A1' + 'a'.repeat(39) + '!'],
   noDigit: ['Parola!'],
   noLetter: ['123456!'],
-  illegalChars: ['Abc1_'], // underscore not allowed per spec
+  illegalChars: ['Abc1_'],
   confirmMismatch: { pass: 'Qa2025#', confirm: 'Qa2024#' },
 };
 
@@ -46,7 +46,7 @@ export const DobData = {
   })(),
   minorISO: (() => {
     const d = new Date(); d.setFullYear(d.getFullYear() - 17);
-    d.setDate(d.getDate() + 1); // just under 18
+    d.setDate(d.getDate() + 1);
     return d.toISOString().slice(0, 10);
   })(),
   futureISO: (() => {
@@ -67,13 +67,11 @@ export const SkillsData = {
 };
 
 export const ModuleData = {
-  // expected values/labels; adjust to actual <option value="">
   modules: [
     { label: 'Initiere in Software Testing', value: 'mod1', price: 900 },
     { label: 'Introducere in Test Automation', value: 'mod2', price: 1500 },
     { label: 'Initiere in REST API testing', value: 'mod3', price: 1500 },
   ],
-  // periods are dynamic; you’ll assert population/count rather than hardcode values
   maxSlots: 15,
 };
 

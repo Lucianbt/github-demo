@@ -12,7 +12,6 @@ export async function logoutIfLoggedIn(page: Page) {
   const logout = page.locator(Nav.logoutAny);
   if (await logout.count()) {
     await logout.first().click();
-    // redirect back to account page after WP logout
     await page.waitForLoadState('domcontentloaded');
   }
 }
@@ -41,6 +40,13 @@ export async function loginAccount(page: Page, email: string, password: string) 
     page.locator(Login.submit).click(),
   ]);
 
-  // Scoped logout in header proves logged-in state
   await expect(page.locator(Nav.logoutAny).first()).toBeVisible();
+}
+
+export async function goToFormAuthenticated(page: Page, email: string, password: string) {
+  const loggedIn = await page.locator(Nav.logoutAny).first().isVisible().catch(() => false);
+  if (!loggedIn) {
+    await loginAccount(page, email, password);
+  }
+  await page.goto(`${Url.base}${Url.formPath}`);
 }
