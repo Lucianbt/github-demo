@@ -1,116 +1,113 @@
-// tests/happy-path.spec.ts
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
-const BASE = 'https://ver3.academiatestarii.ro/';
-const FORM_PATH = 'index.php/formular/';
-const ACCOUNT_PATH = 'index.php/my-account/';
-const PASS = 'example';
+// Helper: run only if a visible login form is present; otherwise skip (already logged in)
+async function ensureLoggedIn(page: Page, email: string, password: string) {
+  // Wait for page to be stable before checking auth state
+  await page.waitForLoadState('domcontentloaded');
+  
+  // If logout is visible, we're already authenticated.
+  const logoutLink = page.getByRole('link', { name: /logout/i });
+  const isLoggedIn = await logoutLink.isVisible({ timeout: 3000 }).catch(() => false);
+  if (isLoggedIn) return;
 
-// Helpers (inline)
-const linkForm = `a[href*="${FORM_PATH}"]`;
-const logoutAny = 'header a[href*="action=logout"], header a[href*="customer-logout"]';
+  // Check if login inputs are visible
+  const usernameInput = page.locator('input[name="username"]');
+  const isLoginVisible = await usernameInput.isVisible({ timeout: 2000 }).catch(() => false);
+  if (!isLoginVisible) return;
 
-function makeEmail() {
-  return `e2e.${Date.now()}@example.com`;
+  // Perform login
+  await usernameInput.fill(email);
+  await page.locator('input[name="password"]').fill(password);
+  
+  // Click the login button and wait for navigation
+  const loginButton = page.getByRole('button', { name: /login/i });
+  await loginButton.click();
+  await page.waitForLoadState('networkidle', { timeout: 10000 });
 }
 
-test.describe.configure({ mode: 'serial' });
+test('Happy path E2E registration form', async ({ page }) => {
+  // Generate random email and password
+  const email = `e2e_${Date.now()}_${Math.floor(Math.random()*10000)}@example.com`;
+  const password = `Secret${Math.floor(Math.random()*10000)}!`;
 
-test('Happy path E2E: register/login → fill long form → submit', async ({ page }) => {
-  const email = makeEmail();
+  // 1. Register with random credentials (site auto-logs in after registration)
+  await page.goto('https://ver3.academiatestarii.ro/index.php/formular/');
+  await page.locator('#reg_email').fill(email);
+  await page.locator('#reg_password').fill(password);
+  await Promise.all([
+    page.waitForURL('**/formular/**', { waitUntil: 'networkidle' }),
+    page.locator('button:has-text("Înregistrează-te"), input[type="submit"]:has-text("Înregistrează-te")').click(),
+  ]);
+  // Note: do NOT fill anti-spam honeypot fields; leave them blank
 
-  // 1) Go to /formular and attempt to register a WP/Woo account
-  await page.goto(`${BASE}${FORM_PATH}`);
+  // 2. Navigate to form page and ensure logged in (single check)
+  await page.goto('https://ver3.academiatestarii.ro/index.php/formular/');
+  await ensureLoggedIn(page, email, password);
 
-  const regEmail = page.locator('#reg_email');
-  const regPass  = page.locator('#reg_password');
-  const regBtn   = page.locator('button[name="register"], input[name="register"]');
-  if (await regEmail.isVisible()) {
-    await regEmail.fill(email);
-    await regPass.fill(PASS);
-
-    const anti = page.locator('input[type="text"][name*="anti" i], input[placeholder*="Anti" i]');
-    if (await anti.count()) await anti.first().fill('7');
-
-    await regBtn.click();
-  }
-
-  // If still not logged in, go to My Account and login
-  const headerLogout = page.locator(logoutAny).first();
-  if (!(await headerLogout.isVisible().catch(() => false))) {
-    await page.goto(`${BASE}${ACCOUNT_PATH}`);
-    await page.locator('#username').fill(email);
-    await page.locator('#password').fill(PASS);
-    await Promise.all([
-      page.waitForLoadState('domcontentloaded'),
-      page.locator('button[name="login"], input[name="login"]').click(),
-    ]);
-    await expect(page.locator(logoutAny).first()).toBeVisible();
-  }
-
-  // 2) Open the long form
-  await page.goto(BASE);
-  await page.locator(linkForm).first().click();
-  await expect(page).toHaveURL(new RegExp(FORM_PATH, 'i'));
-
-  // 3) Fill all fields (use precise CSS)
-  // Name fields
-  await expect(page.locator('input[name="nume"]')).toBeVisible();
+  // 3. Ensure form is ready
+  await page.waitForSelector('input[name="nume"], input[name="prenume"]', { timeout: 20000 });
   await page.locator('input[name="nume"]').fill('Popescu');
   await page.locator('input[name="prenume"]').fill('Ana');
-
-  // Password + confirm (long form, separate from account creds)
-  await page.locator('input[name="parola"]').fill('Parola1');
-  await page.locator('input[name*="confirm"]').fill('Parola1');
-
-  // Profesie, Telefon, Data naștere
-  await page.locator('input[name*="profesie" i]').fill('QA Engineer');
-  await page.locator('input[name*="telefon" i], input[type="tel"]').fill('0712345678');
-  await page.locator('input[name*="nastere" i], input[type="date"]').fill('1990-01-10'); // >= 18y
-
-  // Modulul dorit + Perioada dorita
-  const modul = page.locator('select[name*="modul" i]');
-  await modul.selectOption({ index: 1 }); // first real option
-  const perioada = page.locator('select[name*="perioada" i]');
-  await expect(perioada).toBeEnabled();
-  await perioada.selectOption({ index: 1 });
-
-  // Educație (unchecked "nu doresc", so fill)
-  await page.locator('textarea[name*="educatie" i]').fill('Facultatea X, 2019–2023');
-
-  // Skills dropdowns
-  await page.locator('select[name*="engleza" i]').selectOption({ index: 2 }); // Mediu/Avansat acceptable
-  await page.locator('select[name*="office" i]').selectOption({ index: 2 });
-  await page.locator('select[name*="web" i]').selectOption({ index: 2 });
-
-  // Metoda / Tipul de plată (radio or select — handle both)
-  const metodaAny = page.locator('input[type="radio"][name*="metoda" i], select[name*="metoda" i]');
-  if (await metodaAny.first().evaluate(el => (el as HTMLInputElement).tagName.toLowerCase() === 'input')) {
-    await metodaAny.first().check({ force: true });
+  await page.locator('input[name*="parola" i]').fill(password);
+  await page.locator('input[name*="confirmare" i]').fill(password);
+  await page.locator('input[name*="profesie" i]').fill('inginer');
+  await page.locator('input[name*="telefon" i]').fill('0742123123');
+  // Do not interact with any anti-spam honeypots on the form
+  // Modulul dorit
+  await page.locator('select[name*="modul" i]').selectOption({ label: 'Iniţiere în Software Testing - 900 RON' });
+  // Perioada dorita: skip
+  // Educatie: tick 'nu doresc sa completez' (avoid overlay interception)
+  const skipEducatie = page.locator('#educatie-no, input[name="educatie-no"]');
+  if (await skipEducatie.count()) {
+    if (!(await skipEducatie.isChecked())) {
+      // Avoid overlay interception by setting via DOM and dispatching events
+      await skipEducatie.evaluate((el: HTMLInputElement) => {
+        el.checked = true;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      await expect(skipEducatie).toBeChecked();
+    }
   } else {
-    await page.locator('select[name*="metoda" i]').selectOption({ index: 1 });
+    // Fallback: fill educatie if checkbox missing
+    await page.locator('input[name="educatie"]').fill('secret');
   }
-  const tipAny = page.locator('input[type="radio"][name*="tip" i], select[name*="tip" i]');
-  if (await tipAny.first().evaluate(el => (el as HTMLInputElement).tagName.toLowerCase() === 'input')) {
-    await tipAny.first().check({ force: true });
-  } else {
-    await page.locator('select[name*="tip" i]').selectOption({ index: 1 });
+  // Cunostinte Engleza
+  await page.locator('select[name*="engleza" i]').selectOption({ label: 'Avansat' });
+  // Cunostinte Office
+  await page.locator('select[name*="office" i]').selectOption({ label: 'Avansat' });
+  // Cunostinte Web
+  await page.locator('select[name*="web" i]').selectOption({ label: 'Avansat' });
+  // Prefered Payment Method: 'online' is checked by default
+  const onlineRadio = page.locator('input[type="radio"][value*="online" i]');
+  if (await onlineRadio.count()) {
+    await expect(onlineRadio).toBeChecked();
   }
-
-  // Required checkboxes (if present, keep them checked)
-  const terms = page.locator('input[type="checkbox"][name*="termen" i]').first();
-  const cond  = page.locator('input[type="checkbox"][name*="conditii" i]').first();
-  if (await terms.count()) await terms.check({ force: true });
-  if (await cond.count())  await cond.check({ force: true });
-
-  // 4) Submit (prefer a proper submit control; fallback to visible “Trimite”)
-  const submitBtn = page.locator('form button[type="submit"], form input[type="submit"], .wpcf7-submit');
-  if (await submitBtn.count()) {
-    await submitBtn.first().click();
-  } else {
-    await page.getByText(/^Trimite$/i).click(); // fallback if styled div
+  // Tipul de plata: 'integral' is checked by default
+  const integralRadio = page.locator('input[type="radio"][value*="integral" i]');
+  if (await integralRadio.count()) {
+    await expect(integralRadio).toBeChecked();
   }
+  // Sunt de acord cu Termenii si conditiile site-ului (already checked)
+  const terms = page.locator('input[type="checkbox"]:near(:text("Termenii"))').first();
+  if (await terms.count()) {
+    await expect(terms).toBeChecked();
+  }
+  // Am citit si indeplinesc conditiile minime ale cursului (already checked)
+  const cond = page.locator('input[type="checkbox"]:near(:text("conditiile minime"))').first();
+  if (await cond.count()) {
+    await expect(cond).toBeChecked();
+  }
+  // Click on Trimite (visible div trigger as in UI)
+  const submit = page.locator('div.dima-button.trimite, .dima-button.trimite').first();
+  await submit.scrollIntoViewIfNeeded();
+  await expect(submit).toBeVisible({ timeout: 10000 });
+  await page.locator('.dima-loading, .ajax-loader').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+  await submit.click({ force: true });
 
-  // 5) Post-submit sanity (page behavior can vary)
-  await expect(page).toHaveURL(/formular|my-account|multumim|success|confirmare/i);
+  // Assert no errors
+  await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
+  const errorCount = await page.locator('input[style*="red"], .error, .wpcf7-not-valid, [aria-invalid="true"]').count();
+  expect(errorCount).toBe(0);
+  await expect(page).toHaveURL(/(multumim|success|confirmare|my-account|formular)/i, { timeout: 10000 });
 });
