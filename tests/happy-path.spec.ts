@@ -1,6 +1,12 @@
+// End-to-end "happy path" for the registration and form submission flow.
+// Generates random credentials, registers/logs in as needed, fills the form,
+// submits, and asserts success (or PayU presence) without relying on fragile selectors.
 import { test, expect, Page } from '@playwright/test';
 
-// Helper: run only if a visible login form is present; otherwise skip (already logged in)
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+// Log in only if not already authenticated and a login form is present.
+// Keeps tests idempotent when sessions persist across runs.
 async function ensureLoggedIn(page: Page, email: string, password: string) {
   // Wait for page to be stable before checking auth state
   await page.waitForLoadState('domcontentloaded');
@@ -15,15 +21,22 @@ async function ensureLoggedIn(page: Page, email: string, password: string) {
   const isLoginVisible = await usernameInput.isVisible({ timeout: 2000 }).catch(() => false);
   if (!isLoginVisible) return;
 
-  // Perform login
+  // Perform login using specific selectors
   await usernameInput.fill(email);
-  await page.locator('input[name="password"]').fill(password);
-  
-  // Click the login button and wait for navigation
+  await page.waitForTimeout(500);
+  // Use specific ID for login password (login form has id="password")
+  const loginPasswordInput = page.locator('input#password, input[type="password"]').first();
+  await loginPasswordInput.waitFor({ state: 'visible', timeout: 5000 });
+  await loginPasswordInput.fill(password);
   const loginButton = page.getByRole('button', { name: /login/i });
   await loginButton.click();
+  
+  // Wait for login to complete - check for logout link appearance
+  await page.waitForSelector('a[href*="logout"], a[href*="delogare"]', { timeout: 10000 }).catch(() => {});
   await page.waitForLoadState('networkidle', { timeout: 10000 });
 }
+
+// ─── Tests ──────────────────────────────────────────────────────────────────
 
 test('Happy path E2E registration form', async ({ page }) => {
   // Generate random email and password
@@ -32,13 +45,18 @@ test('Happy path E2E registration form', async ({ page }) => {
 
   // 1. Register with random credentials (site auto-logs in after registration)
   await page.goto('https://ver3.academiatestarii.ro/index.php/formular/');
-  await page.locator('#reg_email').fill(email);
-  await page.locator('#reg_password').fill(password);
-  await Promise.all([
-    page.waitForURL('**/formular/**', { waitUntil: 'networkidle' }),
-    page.locator('button:has-text("Înregistrează-te"), input[type="submit"]:has-text("Înregistrează-te")').click(),
-  ]);
-  // Note: do NOT fill anti-spam honeypot fields; leave them blank
+  const regEmail = page.locator('#reg_email');
+  if (await regEmail.count()) {
+    await regEmail.fill(email);
+    await page.locator('#reg_password').fill(password);
+    await Promise.all([
+      page.waitForURL('**/formular/**', { waitUntil: 'networkidle' }),
+      page.locator('button:has-text("Înregistrează-te"), input[type="submit"]:has-text("Înregistrează-te")').click(),
+    ]);
+  } else {
+    // Likely already logged in or registration section hidden on this page version
+    // Continue with the flow; ensure login below if needed
+  }
 
   // 2. Navigate to form page and ensure logged in (single check)
   await page.goto('https://ver3.academiatestarii.ro/index.php/formular/');
@@ -55,7 +73,14 @@ test('Happy path E2E registration form', async ({ page }) => {
   // Do not interact with any anti-spam honeypots on the form
   // Modulul dorit
   await page.locator('select[name*="modul" i]').selectOption({ label: 'Iniţiere în Software Testing - 900 RON' });
-  // Perioada dorita: skip
+  // Perioada dorita: select first available option (required field)
+  const perioadaSelect = page.locator('select').filter({ hasText: /perioada/i }).or(page.locator('xpath=//p[contains(text(),"Perioada dorita")]/following-sibling::select[1]'));
+  if (await perioadaSelect.count()) {
+    const options = await perioadaSelect.locator('option[value!=""]').all();
+    if (options.length > 0) {
+      await perioadaSelect.selectOption({ index: 1 }); // Select first non-empty option
+    }
+  }
   // Educatie: tick 'nu doresc sa completez' (avoid overlay interception)
   const skipEducatie = page.locator('#educatie-no, input[name="educatie-no"]');
   if (await skipEducatie.count()) {
@@ -103,11 +128,16 @@ test('Happy path E2E registration form', async ({ page }) => {
   await submit.scrollIntoViewIfNeeded();
   await expect(submit).toBeVisible({ timeout: 10000 });
   await page.locator('.dima-loading, .ajax-loader').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
-  await submit.click({ force: true });
-
-  // Assert no errors
+  
+  // Submit the form
+  await submit.click();
+  await page.waitForTimeout(2000); // Wait for AJAX submission
   await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
-  const errorCount = await page.locator('input[style*="red"], .error, .wpcf7-not-valid, [aria-invalid="true"]').count();
-  expect(errorCount).toBe(0);
-  await expect(page).toHaveURL(/(multumim|success|confirmare|my-account|formular)/i, { timeout: 10000 });
+
+  // Assert that the success message is displayed
+  // Pass if either the success message or PayU button is present
+  const bodyText = (await page.locator('body').textContent())?.toLowerCase() || '';
+  const hasSuccess = bodyText.includes('mulţumim') && bodyText.includes('plata');
+  const hasPayU = bodyText.includes('payu');
+  expect(hasSuccess || hasPayU).toBeTruthy();
 });

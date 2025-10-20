@@ -1,0 +1,32 @@
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch({
+    headless: false
+  });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('https://academiatestarii.ro/cont-client/');
+  await page.getByRole('textbox', { name: 'Introdu adresa de email sau' }).click();
+  await page.getByRole('textbox', { name: 'Introdu parola' }).click();
+  await page.getByRole('textbox', { name: 'Introdu adresa de email sau' }).click();
+  await page.getByRole('textbox', { name: 'Introdu adresa de email sau' }).fill('lucianpetrariubt@gmail.com');
+  await page.getByRole('textbox', { name: 'Introdu parola' }).click();
+  await page.getByRole('textbox', { name: 'Introdu parola' }).fill('vexedzxc4');
+  await page.getByRole('textbox', { name: 'Introdu parola' }).click();
+  await page.getByRole('textbox', { name: 'Introdu parola' }).click();
+  await page.locator('.masterstudy-authorization__form-show-pass').first().click();
+  await page.getByRole('textbox', { name: 'Introdu parola' }).click();
+  await page.getByRole('textbox', { name: 'Introdu parola' }).fill('vexedzxc47');
+  await page.locator('.masterstudy-authorization__form-show-pass').first().click();
+  await page.getByRole('link', { name: 'Sign In' }).click();
+  await page.getByRole('banner').getByRole('link', { name: 'Cursuri' }).click();
+  await page.getByRole('link', { name: 'Inițiere in Software Testing' }).click();
+  await page.goto('https://academiatestarii.ro/cursuri-testare-sofware/');
+  await page.getByRole('link', { name: 'Introducere în Testarea' }).click();
+  await page.getByRole('link', { name: 'Ia cursul' }).click();
+
+  // ---------------------
+  await context.close();
+  await browser.close();
+})();
