@@ -1,41 +1,21 @@
 // "Educatie" textarea behavior and validation tests.
 // Covers enable/disable via checkbox, valid/invalid content, and typing behavior.
 import { test, expect } from '@playwright/test';
-import type { Locator } from '@playwright/test';
+import { readCsvSync } from './helpers/readCsv';
+import { hasRedOutline, pressSequentially, screenshotAfterEach, expandPlaceholders } from './helpers';
 
 const FORM_URL = 'https://ver3.academiatestarii.ro/index.php/formular/';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-// Heuristic to detect validation error styling (red outline/border)
-async function hasRedOutline(element: Locator) {
-  const outline = await element.evaluate((el: HTMLElement) => getComputedStyle(el).outlineColor || getComputedStyle(el).borderColor);
-  // Accept both outline and border for flexibility
-  return outline.includes('rgb(255, 0, 0)') || outline.includes('red');
-}
-
-// ─── Test Data ──────────────────────────────────────────────────────────────
-
 test.describe('Educatie textarea', () => {
-  const validValues = [
-  'a',
-  'abc123',
-  'Test!@#$',
-  'ăîșțâ',
-  'A'.repeat(256),
-  '1234567890',
-  'a b c',
-  'Spec!@#$',
-  ];
-  const invalidValues = [
-    '',
-    '   ',
-    'A'.repeat(257),
-  ];
+  const csv = readCsvSync('tests/data/educatie.csv');
+  const validValues: string[] = csv.filter((r) => r[0] === 'valid').map((r) => expandPlaceholders(r[1]));
+  const invalidValues: string[] = csv.filter((r) => r[0] === 'invalid').map((r) => expandPlaceholders(r[1]));
 
   test.beforeEach(async ({ page }) => {
     await page.goto(FORM_URL, { waitUntil: 'domcontentloaded' });
   });
+
+  test.afterEach(async ({ page }, testInfo) => screenshotAfterEach(page, testInfo, 'educatie'));
 
   // Ensure the controlling checkbox properly toggles the textarea enabled state
   test('Checkbox disables and enables textarea', async ({ page }) => {
@@ -60,7 +40,7 @@ test.describe('Educatie textarea', () => {
       await checkbox.uncheck();
   await textarea.fill('');
   // Use pressSequentially to simulate typing and trigger validators/masks
-  await textarea.pressSequentially(value);
+  await pressSequentially(textarea, value);
   // Submit
   await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
   // Should not have red outline
@@ -85,7 +65,7 @@ test.describe('Educatie textarea', () => {
   const textarea = page.locator('textarea[name="educatie"], input[name="educatie"]');
       await checkbox.uncheck();
   await textarea.fill('');
-  await textarea.pressSequentially(value);
+  await pressSequentially(textarea, value);
   // Submit
   await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
   // Should have red outline
@@ -101,7 +81,7 @@ test.describe('Educatie textarea', () => {
     await expect(textarea).toBeDisabled();
     // Try to type: Playwright does not throw, so check value remains unchanged
     const initialValue = await textarea.inputValue();
-  await textarea.pressSequentially('Should not work');
+  await pressSequentially(textarea, 'Should not work');
     expect(await textarea.inputValue()).toBe(initialValue);
   });
 
@@ -112,7 +92,7 @@ test.describe('Educatie textarea', () => {
     await checkbox.uncheck();
     await expect(textarea).toBeEnabled();
   await textarea.fill('');
-  await textarea.pressSequentially('abc');
+  await pressSequentially(textarea, 'abc');
     expect(await textarea.inputValue()).toBe('abc');
   });
 });

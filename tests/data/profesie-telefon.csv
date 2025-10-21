@@ -1,0 +1,20 @@
+profesie_valid,A
+profesie_valid,a
+profesie_valid,Â
+profesie_valid, 
+profesie_valid,1
+profesie_valid,&
+profesie_valid,*
+profesie_valid,XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+profesie_invalid,empty,
+profesie_invalid,too long,YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+telefon_valid,0742123123
+telefon_valid,0711111111
+telefon_valid,0799999999
+telefon_invalid,10 letters,abcdefghij
+telefon_invalid,10 special,!@#$%^&*()
+telefon_invalid,10 spaces,          
+telefon_invalid,9 digits starting 07,074212312
+telefon_invalid,11 digits starting 07,07421231234
+telefon_invalid,10 digits not starting 07,0842123123
+telefon_invalid,empty,

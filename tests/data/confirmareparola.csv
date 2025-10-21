@@ -1,0 +1,30 @@
+valid,A_5_0,AAAAA0
+valid,B_39_0,BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB0
+valid,a_5_9,aaaaa9
+valid,b_39_9,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb9
+valid,Z4_1_!,ZZZZ1!
+valid,Y38_8@,YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY8@
+valid,z38_1#,zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz1#
+valid,y4_8$,yyyy8$
+valid,digit_letter_1,12345A
+valid,digit_letter_2,12345Z
+valid,digit_letter_3,98765a
+valid,digit_letter_4,98765z
+
+invalid,too short A,AAAAA
+invalid,too short a,aaaaa
+invalid,too short y,yyyyy
+invalid,too short Z,ZZZZZ
+invalid,too long B,BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB11
+invalid,too long b,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb22
+invalid,too long Y,YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY33
+invalid,too long z,zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz44
+invalid,only letters,abcdef
+invalid,only digits,123456
+invalid,only special,!@#$!@
+invalid,missing digit,abcde@
+invalid,missing letter,12345!
+invalid,invalid special,abcd2%
+invalid,diacritics,ȘȘȘȘȘ5
+invalid,six spaces,"      "
+invalid,empty,

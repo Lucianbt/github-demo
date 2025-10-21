@@ -1,0 +1,11 @@
+valid,a,a
+valid,abc123,abc123
+valid,Test!@#$,Test!@#$
+valid,ăîșțâ,ăîșțâ
+valid,A256,${A256}
+valid,1234567890,1234567890
+valid,a b c,a b c
+valid,Spec!@#$,Spec!@#$
+invalid,empty,
+invalid,spaces,   
+invalid,A257,${A257}

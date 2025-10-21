@@ -1,42 +1,21 @@
 // End-to-end "happy path" for the registration and form submission flow.
 // Generates random credentials, registers/logs in as needed, fills the form,
 // submits, and asserts success (or PayU presence) without relying on fragile selectors.
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { ensureLoggedIn, screenshotAfterEach } from './helpers';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-// Log in only if not already authenticated and a login form is present.
-// Keeps tests idempotent when sessions persist across runs.
-async function ensureLoggedIn(page: Page, email: string, password: string) {
-  // Wait for page to be stable before checking auth state
-  await page.waitForLoadState('domcontentloaded');
-  
-  // If logout is visible, we're already authenticated.
-  const logoutLink = page.getByRole('link', { name: /logout/i });
-  const isLoggedIn = await logoutLink.isVisible({ timeout: 3000 }).catch(() => false);
-  if (isLoggedIn) return;
-
-  // Check if login inputs are visible
-  const usernameInput = page.locator('input[name="username"]');
-  const isLoginVisible = await usernameInput.isVisible({ timeout: 2000 }).catch(() => false);
-  if (!isLoginVisible) return;
-
-  // Perform login using specific selectors
-  await usernameInput.fill(email);
-  await page.waitForTimeout(500);
-  // Use specific ID for login password (login form has id="password")
-  const loginPasswordInput = page.locator('input#password, input[type="password"]').first();
-  await loginPasswordInput.waitFor({ state: 'visible', timeout: 5000 });
-  await loginPasswordInput.fill(password);
-  const loginButton = page.getByRole('button', { name: /login/i });
-  await loginButton.click();
-  
-  // Wait for login to complete - check for logout link appearance
-  await page.waitForSelector('a[href*="logout"], a[href*="delogare"]', { timeout: 10000 }).catch(() => {});
-  await page.waitForLoadState('networkidle', { timeout: 10000 });
-}
-
-// ─── Tests ──────────────────────────────────────────────────────────────────
+test.describe('Happy path E2E', () => {
+  test.afterEach(async ({ page }, testInfo) => {
+    // Wait for PayU button or 'multumim' text after submit, or fallback to timeout
+    const payuOrThanks = page.locator('text=/payu|mulțumim|multumim/i');
+    try {
+      await payuOrThanks.first().waitFor({ state: 'visible', timeout: 5000 });
+    } catch {
+      // If not found, fallback to a longer timeout to allow UI to update
+      await page.waitForTimeout(3000);
+    }
+    await screenshotAfterEach(page, testInfo, 'happy-path');
+  });
 
 test('Happy path E2E registration form', async ({ page }) => {
   // Generate random email and password
@@ -70,6 +49,15 @@ test('Happy path E2E registration form', async ({ page }) => {
   await page.locator('input[name*="confirmare" i]').fill(password);
   await page.locator('input[name*="profesie" i]').fill('inginer');
   await page.locator('input[name*="telefon" i]').fill('0742123123');
+  // Fill the first visible, enabled, empty text input (likely the required ASasfas//asdasdhasd field)
+  const emptyVisibleInputs = await page.locator('input[type="text"]:visible:enabled').all();
+  for (const input of emptyVisibleInputs) {
+    const value = await input.inputValue();
+    if (!value) {
+      await input.fill('test-value');
+      break;
+    }
+  }
   // Do not interact with any anti-spam honeypots on the form
   // Modulul dorit
   await page.locator('select[name*="modul" i]').selectOption({ label: 'Iniţiere în Software Testing - 900 RON' });
@@ -140,4 +128,10 @@ test('Happy path E2E registration form', async ({ page }) => {
   const hasSuccess = bodyText.includes('mulţumim') && bodyText.includes('plata');
   const hasPayU = bodyText.includes('payu');
   expect(hasSuccess || hasPayU).toBeTruthy();
+  
+  // Wait for success message or PayU button to be visible
+  await page.waitForTimeout(2000); // Additional wait for animations/rendering
+  const successLocator = page.locator('text=/mulţumim|payu/i');
+  await successLocator.first().waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+  });
 });

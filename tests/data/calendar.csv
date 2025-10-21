@@ -1,0 +1,12 @@
+
+valid,10/18/2007
+valid,12/20/1975
+
+# invalid cases from original inline array
+invalid,11/18/2007
+invalid,10/18/2026
+invalid,aaaaaa
+invalid,1231233
+invalid,!!!!
+invalid," "
+invalid,

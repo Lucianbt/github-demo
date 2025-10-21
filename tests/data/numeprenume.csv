@@ -1,0 +1,23 @@
+nume_valid,A,A
+nume_valid,B29,BBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+nume_valid,C30,CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+nume_valid,Z,Z
+nume_invalid,lowercase,a
+nume_invalid,lowercase,z
+nume_invalid,diacritic,â
+nume_invalid,space, 
+nume_invalid,empty,
+nume_invalid,digit,3
+nume_invalid,symbol,!
+nume_invalid,too long,DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+prenume_valid,A,A
+prenume_valid,Y29,YYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+prenume_valid,Z30,ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+prenume_invalid,lowercase,a
+prenume_invalid,lowercase,z
+prenume_invalid,diacritic,â
+prenume_invalid,space, 
+prenume_invalid,empty,
+prenume_invalid,digit,3
+prenume_invalid,symbol,!
+prenume_invalid,too long,DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD

@@ -1,36 +1,19 @@
 // Dropdown validation tests for "Modulul Dorit" and dependent "Perioada Dorita".
 // Validates that selecting modules reveals appropriate period selectors and
 // that the UI flags missing/invalid choices via standard error signals.
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { hasRedOutline, screenshotAfterEach } from './helpers';
 
 const FORM_URL = 'https://ver3.academiatestarii.ro/index.php/formular/';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-// Heuristic for detecting validation error styling on inputs
-async function hasRedOutline(page: Page, fieldName: string): Promise<boolean> {
-  const field = page.locator(`[name="${fieldName}"]`).first();
-  const ariaInvalid = (await field.getAttribute('aria-invalid')) || '';
-  if (ariaInvalid === 'true') return true;
-  const cls = (await field.getAttribute('class')) || '';
-  if (cls.includes('failed')) return true;
-  const borderColor = await field.evaluate((el) => {
-    const computed = window.getComputedStyle(el as Element);
-    return (computed as any).borderColor || (computed as any).borderTopColor || '';
-  });
-  return typeof borderColor === 'string' && (borderColor.includes('255, 0, 0') || borderColor.includes('220, 53, 69') || borderColor.includes('red'));
+async function clickSubmit(page: any) {
+  const btn = page.locator('div.dima-button.trimite, .dima-button.trimite').first();
+  await expect(btn).toBeVisible({ timeout: 15000 });
+  await btn.scrollIntoViewIfNeeded();
+  await btn.click();
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(600);
 }
-
-// ─── Test Data ──────────────────────────────────────────────────────────────
-
-const validModules = [
-  'Iniţiere în Software Testing - 900',
-  'Introducere în Test Automation - 1800 RON',
-  'Iniţiere în REST API testing – discount sarbatori - 1500 RON',
-];
-const defaultModule = 'Alege Modulul Dorit';
-
-// ─── Tests ──────────────────────────────────────────────────────────────────
 
 test.describe('Modulul Dorit and Perioada Dorita dropdown validation', () => {
   test.beforeEach(async ({ page }) => {
@@ -38,11 +21,12 @@ test.describe('Modulul Dorit and Perioada Dorita dropdown validation', () => {
   await expect(page.locator('[name="modul"]')).toBeVisible({ timeout: 15000 });
   });
 
+  test.afterEach(async ({ page }, testInfo) => screenshotAfterEach(page, testInfo, 'modul-perioada'));
+
   test('modul default value is invalid (red outline)', async ({ page }) => {
     const modulDropdown = page.locator('[name="modul"]');
     await modulDropdown.selectOption({ value: '0' });
-    await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-    await page.waitForTimeout(300);
+    await clickSubmit(page);
     const hasError = await hasRedOutline(page, 'modul');
     expect(hasError).toBe(true);
   });
@@ -56,8 +40,7 @@ test.describe('Modulul Dorit and Perioada Dorita dropdown validation', () => {
     test(`modul valid: ${module.label} (no red outline)`, async ({ page }) => {
       const modulDropdown = page.locator('[name="modul"]');
       await modulDropdown.selectOption({ value: module.value });
-      await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-      await page.waitForTimeout(300);
+      await clickSubmit(page);
       const hasError = await hasRedOutline(page, 'modul');
       expect(hasError).toBe(false);
     });
@@ -72,13 +55,22 @@ test.describe('Perioada Dorita dropdown behavior', () => {
     { value: '649', label: 'Iniţiere în REST API testing – discount sarbatori - 1500 RON', perioadaId: '#perioada-649' },
   ];
 
+  test.afterEach(async ({ page }, testInfo) => screenshotAfterEach(page, testInfo, 'modul-perioada'));
+
   test('perioada dorita not present when default module selected', async ({ page }) => {
     await page.goto(FORM_URL, { waitUntil: 'domcontentloaded' });
     const modulDropdown = page.locator('[name="modul"]');
     await modulDropdown.selectOption({ value: '0' });
-    await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-    await page.waitForTimeout(300);
-    await expect(page.locator('#perioada-254, #perioada-261, #perioada-649')).toHaveCount(0);
+    await clickSubmit(page);
+    // The markup may include periode elements hidden when not applicable; ensure none are visible
+    const perioade = page.locator('#perioada-254, #perioada-261, #perioada-649');
+    const count = await perioade.count();
+    if (count === 0) return; // no elements at all -> good
+    // if elements exist, assert they're not visible (fail fast if any visible)
+    for (let i = 0; i < count; i++) {
+      const el = perioade.nth(i);
+      expect(await el.isVisible(), `Expected ${await el.evaluate((n) => n.id)} to be hidden when default module selected`).toBe(false);
+    }
   });
 
   for (const module of moduleOptions) {
@@ -86,15 +78,17 @@ test.describe('Perioada Dorita dropdown behavior', () => {
       await page.goto(FORM_URL, { waitUntil: 'domcontentloaded' });
       const modulDropdown = page.locator('[name="modul"]');
       await modulDropdown.selectOption({ value: module.value });
-      await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-      await page.waitForTimeout(300);
-      const perioadaDropdown = page.locator(module.perioadaId);
-      await expect(perioadaDropdown).toBeVisible({ timeout: 5000 });
-      const slotText = await perioadaDropdown.textContent();
+  await clickSubmit(page);
+    const perioadaDropdown = page.locator(module.perioadaId);
+    // wait briefly for the periodo element to become visible and stable; fail quickly if it doesn't
+    await expect(perioadaDropdown).toBeVisible({ timeout: 3000 });
+    // allow small stabilization for dynamic content to populate
+    await page.waitForTimeout(200);
+    const slotText = (await perioadaDropdown.textContent()) || '';
       const match = slotText ? slotText.match(/\d+/) : null;
       const slotNumber = match ? match[0] : null;
       // Should show a number
-      expect(slotNumber).not.toBeNull();
+      expect(slotNumber, `Expected a numeric slot in ${module.perioadaId} but got: ${slotText}`).not.toBeNull();
       // Should show red outline
       const hasPerioadaError = await hasRedOutline(page, module.perioadaId.replace('#', ''));
       expect(hasPerioadaError).toBe(true);
@@ -106,17 +100,15 @@ test.describe('Perioada Dorita dropdown behavior', () => {
       await page.goto(FORM_URL, { waitUntil: 'domcontentloaded' });
       const modulDropdown = page.locator('[name="modul"]');
       await modulDropdown.selectOption({ value: module.value });
-      await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-      await page.waitForTimeout(300);
+      await clickSubmit(page);
       const perioadaDropdown = page.locator(module.perioadaId);
-      await expect(perioadaDropdown).toBeVisible({ timeout: 5000 });
-      const slotText = await perioadaDropdown.textContent();
+      await expect(perioadaDropdown).toBeVisible({ timeout: 3000 });
+      await page.waitForTimeout(200);
+      const slotText = (await perioadaDropdown.textContent()) || '';
       const match = slotText ? slotText.match(/\d+/) : null;
       const slotNumber = match ? match[0] : null;
       // If no number, it's a bug
-      if (!slotNumber) {
-        throw new Error('Perioada dorita present but no number shown (bug)');
-      }
+      expect(slotNumber, `Perioada dorita present but no number shown for ${module.label} (content=${slotText})`).not.toBeNull();
     });
   }
 
@@ -124,8 +116,7 @@ test.describe('Perioada Dorita dropdown behavior', () => {
     await page.goto(FORM_URL, { waitUntil: 'domcontentloaded' });
     const modulDropdown = page.locator('[name="modul"]');
     await modulDropdown.selectOption({ value: '0' });
-    await page.locator('div.dima-button.trimite, .dima-button.trimite').click();
-    await page.waitForTimeout(300);
+    await clickSubmit(page);
     // Should not show red outline for perioada dorita
     for (const module of moduleOptions) {
       const hasPerioadaError = await hasRedOutline(page, module.perioadaId.replace('#', ''));
