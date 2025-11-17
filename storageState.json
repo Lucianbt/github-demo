@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "wordpress_sec_a4f0938fb0295ff0a7cac2a6eef18f1e",
-      "value": "e2e_numeprenume%7C1762117604%7CItsmVgexxAMYXBgDSsVVIdsL65vYlFNz4aVAuzi54YE%7Cf57092df5bdff83f3592693f64eaa1d815eebb43d5ab12043429737b211b34fe",
+      "value": "e2e_numeprenume%7C1763215576%7CiA82V2DPhMGCkL7bpIr7Ky5jrZBZwTPK9p4a4ActEc1%7Cad3174b64758535c0af160263f10f4de24511518f8e3b9f5bfe74b5eec2234ba",
       "domain": "ver3.academiatestarii.ro",
       "path": "/wp-content/plugins",
       "expires": -1,
@@ -12,7 +12,7 @@
     },
     {
       "name": "wordpress_sec_a4f0938fb0295ff0a7cac2a6eef18f1e",
-      "value": "e2e_numeprenume%7C1762117604%7CItsmVgexxAMYXBgDSsVVIdsL65vYlFNz4aVAuzi54YE%7Cf57092df5bdff83f3592693f64eaa1d815eebb43d5ab12043429737b211b34fe",
+      "value": "e2e_numeprenume%7C1763215576%7CiA82V2DPhMGCkL7bpIr7Ky5jrZBZwTPK9p4a4ActEc1%7Cad3174b64758535c0af160263f10f4de24511518f8e3b9f5bfe74b5eec2234ba",
       "domain": "ver3.academiatestarii.ro",
       "path": "/wp-admin",
       "expires": -1,
@@ -22,7 +22,7 @@
     },
     {
       "name": "wordpress_logged_in_a4f0938fb0295ff0a7cac2a6eef18f1e",
-      "value": "e2e_numeprenume%7C1762117604%7CItsmVgexxAMYXBgDSsVVIdsL65vYlFNz4aVAuzi54YE%7Ce4a19c7ae0719857b291e118aad29f69bbf07c6d35a5bec014db927b85b2b8b3",
+      "value": "e2e_numeprenume%7C1763215576%7CiA82V2DPhMGCkL7bpIr7Ky5jrZBZwTPK9p4a4ActEc1%7C9d8647b31b88b5fe28d2106292ff319059d0f0d136f7b72f49682faa4cf0be29",
       "domain": "ver3.academiatestarii.ro",
       "path": "/",
       "expires": -1,
