@@ -2,35 +2,35 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-16T23:21:51 EET" name="Surefire suite" finished-at="2025-11-16T23:22:09 EET" duration-ms="17356">
+  <suite started-at="2025-11-19T16:21:18 EET" name="Surefire suite" finished-at="2025-11-19T16:21:55 EET" duration-ms="37328">
     <groups>
     </groups>
-    <test started-at="2025-11-16T23:21:51 EET" name="Surefire test" finished-at="2025-11-16T23:22:09 EET" duration-ms="17356">
-      <class name="com.githubdemo.academia.Contact">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-16T23:21:51 EET" name="setUp" finished-at="2025-11-16T23:21:52 EET" duration-ms="1218" status="PASS">
+    <test started-at="2025-11-19T16:21:18 EET" name="Surefire test" finished-at="2025-11-19T16:21:55 EET" duration-ms="37328">
+      <class name="com.githubdemo.academia.Traineri">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:18 EET" name="setUp" finished-at="2025-11-19T16:21:23 EET" duration-ms="4996" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="contactFormTest()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-16T23:21:52 EET" name="contactFormTest" description="Contact form flow on academiatestarii.ro" finished-at="2025-11-16T23:22:06 EET" duration-ms="13844" status="PASS">
+        <test-method signature="traineriFlow()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:23 EET" name="traineriFlow" description="Trainerii -&gt; teacher -&gt; contact flow on academiatestarii.ro" finished-at="2025-11-19T16:21:53 EET" duration-ms="29909" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- contactFormTest -->
-        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-16T23:22:06 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-16T23:22:08 EET" duration-ms="2108" status="PASS">
+        </test-method> <!-- traineriFlow -->
+        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:53 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-19T16:21:55 EET" duration-ms="2095" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=contactFormTest status=SUCCESS method=Contact.contactFormTest()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9] output={null}]]]>
+                <![CDATA[[TestResult name=traineriFlow status=SUCCESS method=Traineri.traineriFlow()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenshotOnTestResult -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-16T23:22:08 EET" name="tearDown" finished-at="2025-11-16T23:22:09 EET" duration-ms="159" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:55 EET" name="tearDown" finished-at="2025-11-19T16:21:55 EET" duration-ms="309" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.githubdemo.academia.Contact -->
+      </class> <!-- com.githubdemo.academia.Traineri -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>
