@@ -2,35 +2,35 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-19T16:21:18 EET" name="Surefire suite" finished-at="2025-11-19T16:21:55 EET" duration-ms="37328">
+  <suite started-at="2025-11-20T04:49:45 EET" name="Surefire suite" finished-at="2025-11-20T04:50:01 EET" duration-ms="16689">
     <groups>
     </groups>
-    <test started-at="2025-11-19T16:21:18 EET" name="Surefire test" finished-at="2025-11-19T16:21:55 EET" duration-ms="37328">
-      <class name="com.githubdemo.academia.Traineri">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:18 EET" name="setUp" finished-at="2025-11-19T16:21:23 EET" duration-ms="4996" status="PASS">
+    <test started-at="2025-11-20T04:49:45 EET" name="Surefire test" finished-at="2025-11-20T04:50:01 EET" duration-ms="16689">
+      <class name="com.githubdemo.academia.UserLoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:45 EET" name="setUp" finished-at="2025-11-20T04:49:46 EET" duration-ms="1186" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="traineriFlow()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:23 EET" name="traineriFlow" description="Trainerii -&gt; teacher -&gt; contact flow on academiatestarii.ro" finished-at="2025-11-19T16:21:53 EET" duration-ms="29909" status="PASS">
+        <test-method signature="loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:46 EET" name="loginAndLogout" description="Login flow and settings navigation on academiatestarii.ro" finished-at="2025-11-20T04:49:59 EET" duration-ms="13155" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- traineriFlow -->
-        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:53 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-19T16:21:55 EET" duration-ms="2095" status="PASS">
+        </test-method> <!-- loginAndLogout -->
+        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:59 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-20T04:50:01 EET" duration-ms="2159" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=traineriFlow status=SUCCESS method=Traineri.traineriFlow()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9] output={null}]]]>
+                <![CDATA[[TestResult name=loginAndLogout status=SUCCESS method=UserLoginTest.loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenshotOnTestResult -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.Traineri@12d3a4e9]" started-at="2025-11-19T16:21:55 EET" name="tearDown" finished-at="2025-11-19T16:21:55 EET" duration-ms="309" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:50:01 EET" name="tearDown" finished-at="2025-11-20T04:50:01 EET" duration-ms="169" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.githubdemo.academia.Traineri -->
+      </class> <!-- com.githubdemo.academia.UserLoginTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

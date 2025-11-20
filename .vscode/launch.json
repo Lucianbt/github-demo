@@ -15,5 +15,26 @@
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"]
     }
+    ,
+    {
+      "name": "Playwright: Run Current File (All projects, headed)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@playwright/test/cli.js",
+      "args": ["test", "${file}", "--headed"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Playwright: Run Suite (All projects, headed)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@playwright/test/cli.js",
+      "args": ["test", "--headed"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
   ]
 }

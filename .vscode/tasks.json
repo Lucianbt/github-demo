@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Playwright: Run Current File (All projects)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["playwright", "test", "${file}"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Playwright: Run Current File (All projects, headed)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["playwright", "test", "${file}", "--headed"],
+      "presentation": { "echo": true, "reveal": "always", "panel": "shared" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Playwright: Run Suite (All projects)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["playwright", "test"],
+      "presentation": { "echo": true, "reveal": "always", "panel": "shared" },
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

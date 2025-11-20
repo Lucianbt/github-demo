@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.githubdemo.academia.Traineri" class="method navigator-link" hash-for-method="traineriFlow">traineriFlow</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.githubdemo.academia.UserLoginTest" class="method navigator-link" hash-for-method="loginAndLogout">loginAndLogout</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -121,16 +121,16 @@
           <div class="suite-Surefire_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.githubdemo.academia.Traineri</span>
+              <span class="class-name">com.githubdemo.academia.UserLoginTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="traineriFlow">
-                  </a> <!-- traineriFlow -->
-                  <span class="method-name">traineriFlow</span>
+                  <a name="loginAndLogout">
+                  </a> <!-- loginAndLogout -->
+                  <span class="method-name">loginAndLogout</span>
                   <em>
-(Trainerii -> teacher -> contact flow on academiatestarii.ro)                  </em>
+(Login flow and settings navigation on academiatestarii.ro)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -145,13 +145,8 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
-    &lt;method-selectors&gt;
-      &lt;method-selector&gt;
-        &lt;selector-class name=&quot;org.apache.maven.surefire.testng.utils.MethodSelector&quot; priority=&quot;10000&quot;/&gt;
-      &lt;/method-selector&gt;
-    &lt;/method-selectors&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.githubdemo.academia.Traineri&quot;/&gt;
+      &lt;class name=&quot;com.githubdemo.academia.UserLoginTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -193,14 +188,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'traineriFlow')
-data.setCell(0, 2, 'com.githubdemo.academia.Traineri')
-data.setCell(0, 3, 29909);
+data.setCell(0, 1, 'loginAndLogout')
+data.setCell(0, 2, 'com.githubdemo.academia.UserLoginTest')
+data.setCell(0, 3, 13155);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 29 seconds</span>
+              <span class="suite-total-time">Total running time: 13 seconds</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -226,22 +221,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.githubdemo.academia.Traineri</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.githubdemo.academia.UserLoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">traineriFlow</span>
-                <span class="method-start">5000 ms</span>
+                <span class="method-name">loginAndLogout</span>
+                <span class="method-start">1194 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">takeScreenshotOnTestResult([TestResult name=traineriFlow status=SUCCESS method=Traineri.traineriFlow()[pri:0, instance:com.gith...)</span>
-                <span class="method-start">34912 ms</span>
+                <span class="method-name">takeScreenshotOnTestResult([TestResult name=loginAndLogout status=SUCCESS method=UserLoginTest.loginAndLogout()[pri:0, instance...)</span>
+                <span class="method-start">14349 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">37007 ms</span>
+                <span class="method-start">16509 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

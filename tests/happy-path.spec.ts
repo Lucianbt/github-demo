@@ -4,6 +4,11 @@
 import { test, expect } from '@playwright/test';
 import { ensureLoggedIn, screenshotAfterEach } from './helpers';
 
+// This scenario is an end-to-end flow that can take longer than the default
+// Playwright test timeout (30s). Increase the timeout to 2 minutes for this
+// file to avoid spurious timeout failures on slower browsers or CI.
+test.setTimeout(120000);
+
 test.describe('Happy path E2E', () => {
   test.afterEach(async ({ page }, testInfo) => {
     // Wait for PayU button or 'multumim' text after submit, or fallback to timeout

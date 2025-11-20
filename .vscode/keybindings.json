@@ -1,0 +1,8 @@
+[
+  {
+    "key": "ctrl+alt+r",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Playwright: Run Current File (All projects)",
+    "when": "editorTextFocus && resourceLangId == typescript"
+  }
+]

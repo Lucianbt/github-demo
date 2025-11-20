@@ -17,59 +17,59 @@ Quick commands (Windows PowerShell)
 - Run Java tests (Windows): `./mvnw.cmd test` (or `mvn test` if Maven installed)
 - Run a single Java TestNG class: `./mvnw.cmd -Dtest=com.githubdemo.academia.UserLoginTest test`
 
-Big-picture architecture & flows
-- Playwright stack
-  - Tests are in `tests/` (e.g., `happy-path.spec.ts`, `numeprenume.spec.ts`).
-  - Shared helpers live in `tests/helpers/` and are exported via `tests/helpers/index.ts` (notably `ensureLoggedIn` in `auth.ts` and UI utilities in `ui.ts`).
-  - `playwright.config.ts` configures `globalSetup` (root `global-setup.ts`) which produces `storageState.json` used by most tests to skip repeated logins.
-  - The config sets `trace: 'on-first-retry'` and `reporter: 'html'` — expect traces on failures and an HTML report in `playwright-report/`.
+<!-- .github/copilot-instructions.md - guidance for AI coding agents working in this repo -->
+# AI agent guide — github-demo (concise)
 
-- Java/TestNG stack
-  - Tests are under `src/test/java/com/githubdemo/academia` (example: `UserLoginTest.java`).
-  - Uses `WebDriverManager` to manage browser driver binaries and TestNG as the test runner.
-  - Tests capture screenshots in `screenshots/` and use explicit waits (`WebDriverWait`) rather than purely implicit waits.
+Purpose: get an AI coding agent productive quickly in this repo (end-to-end test suites in TypeScript + Java).
 
-Project-specific conventions & patterns
-- Playwright
-  - Use `tests/helpers` utilities instead of re-implementing auth or common selectors; `ensureLoggedIn(page,email,password)` demonstrates preferred login detection + fallback.
-  - Prefer `getByRole` and `locator()` when available; helper files show mixed use of role and CSS selectors—follow existing helper patterns.
-  - `global-setup.ts` is the canonical place for preparing `storageState.json` — do not bypass it unless adding a new explicit auth flow.
+- Primary stacks:
+  - Playwright (TypeScript): tests in `tests/`, config in `playwright.config.ts`, global setup at `global-setup.ts` which writes `storageState.json`.
+  - Java Selenium/TestNG: tests under `src/test/java/com/githubdemo/academia`, build via Maven (`mvnw` / `mvnw.cmd`).
 
-- Java
-  - Tests tend to use explicit XPath/CSS combos and include resilient click fallbacks (JS click when intercepted). Follow that pattern for reliability.
-  - Screenshot capturing is done in `@AfterMethod` and saved under `screenshots/<TestName>`. Keep that pattern when adding Java tests.
+- Quick, copy-paste commands (PowerShell):
+  - Install node deps & Playwright browsers:
+    - `npm ci`
+    - `npx playwright install`
+  - Run Playwright tests (all): `npx playwright test` or `npm run test:playwright`
+  - Run Playwright chromium only: `npx playwright test -p chromium`
+  - Run a single Playwright file: `npx playwright test tests/happy-path.spec.ts`
+  - Run Playwright headed (debug): `$env:PWDEBUG=1; npx playwright test --debug`
+  - Lint TypeScript tests: `npm run lint`
+  - Run Java tests (Windows): `./mvnw.cmd test` (CI uses `mvn`/`mvnw` semantics)
+  - Run a single Java TestNG class: `./mvnw.cmd -Dtest=com.githubdemo.academia.UserLoginTest test`
 
-Integration points & external dependencies
-- External test target: `https://academiatestarii.ro` (used by Java) and `FORM_URL` referenced in `global-setup.ts` for Playwright. Tests interact with live URLs — be cautious.
-- Playwright browsers must be installed (`npx playwright install`).
-- Node devDependencies are in `package.json` (Playwright, TypeScript, ESLint). Maven dependencies are in `pom.xml` (Selenium, TestNG, WebDriverManager).
+- Important repo patterns (copy these examples):
+  - Use `tests/helpers/*` for shared Playwright helpers. Example: `ensureLoggedIn(page,email,password)` in `tests/helpers/auth.ts` — prefer calling this rather than reimplementing login.
+  - `global-setup.ts` is the canonical place to create `storageState.json`. New tests that require a different authenticated role should add a new setup file or fixture, not overwrite the existing global setup.
+  - Playwright config: `trace: 'on-first-retry'`, `reporter: 'html'`, and `storageState: 'storageState.json'` (see `playwright.config.ts`). CI adjusts retries/workers via `process.env.CI`.
+  - Java tests persist screenshots under `screenshots/` and rely on `@AfterMethod` screenshot capture. Follow the existing naming/timestamp pattern.
 
-Security & secrets
-- This repo currently contains credentials in `global-setup.ts` and `src/test/java/com/githubdemo/academia/UserLoginTest.java` (emails/passwords). Treat these as secrets: do not echo them in PR text or expose them in new files.
-- If you need to add credentials for testing, prefer using environment variables or a secure secret store; update `global-setup.ts` and tests to read from env when applicable.
+- Concrete selectors & helper conventions:
+  - Prefer `getByRole(...)` and `locator()` as seen in `tests/helpers/auth.ts`.
+  - When login requires specific selectors, use the repository's existing selectors: `input[name="username"]`, `input#password`, and `a[href*="logout"]` for detection.
 
-When editing code
-- For Playwright TypeScript changes:
-  - Update helpers in `tests/helpers/` for cross-test reuse.
-  - Run `npx playwright test` locally after `npx playwright install` and `npm i`.
-  - Keep `storageState.json` usage in mind — if you add tests that require different roles or sessions, add a dedicated `global-setup-<role>.ts` or create context in test fixtures instead of modifying the existing global setup.
+- Integration & external resources:
+  - Tests target live sites (e.g., `https://ver3.academiatestarii.ro`). Be cautious when running tests that mutate data.
+  - Node deps in `package.json` (Playwright, TypeScript, ESLint); Maven deps in `pom.xml` (Selenium, TestNG, WebDriverManager).
 
-- For Java changes:
-  - Keep TestNG annotations, maintain `@AfterMethod` screenshot behavior, and continue using `WebDriverManager` to avoid manual driver installs.
-  - Use Maven wrapper `mvnw` for consistent CI runs.
+- Secrets & safety:
+  - The repo currently contains plain credentials in `global-setup.ts` and some Java tests. Do not expose these in PR text or new files. If adding credentials, prefer env vars and update code to read from `process.env` / system env.
 
-Reports, outputs & where to look
-- Playwright HTML report: `playwright-report/index.html`.
-- Playwright raw artifacts: `playwright-results.json` (if produced by CI) and `screenshots/` under `playwright-report` depending on failures.
-- Java Surefire reports: `target/surefire-reports/` and `target/test-classes/` for compiled tests.
+- When you change tests or helpers:
+  - Update `tests/helpers/` for cross-test reuse.
+  - Run local short reproductions: single spec or single Java class before broad CI runs.
+  - Use the Maven wrapper (`mvnw` / `mvnw.cmd`) in scripts and CI to ensure consistent builds.
 
-Small examples to copy from repo
-- Use `ensureLoggedIn(page, email, password)` from `tests/helpers/auth.ts` to avoid duplicate login code.
-- Follow the screenshot pattern from `UserLoginTest.java` (create `screenshots/<TestName>` and save with timestamp/status) when adding Java tests.
+- Where to look for failures & artifacts:
+  - Playwright HTML report: `playwright-report/index.html`.
+  - Playwright artifacts/traces: generated under `playwright-report/` and `playwright-results.json` (CI).
+  - Java Surefire reports: `target/surefire-reports/`.
 
-If you are unsure
-- Run tests locally in short mode (single browser or single class) to reproduce failures quickly.
-- Ask for clarification when a proposed change touches test credentials or global auth flows.
+- If CI or credentials are relevant, ask for the CI workflow files (GitHub Actions) and credential handling preferences so the guide can be extended.
 
-Feedback request
-- If anything important is missing or you want this file expanded with CI-specific commands (GitHub Actions), tell me which CI files to inspect and I will extend this guide.
+- If you'd like, I can also:
+  - add short CI commands to this file after inspecting `.github/workflows/` (if present), or
+  - convert inline credentials to env-driven patterns and open a PR scaffolding `dotenv` usage in `global-setup.ts`.
+
+---
+Please tell me any missing specifics you'd like added (CI commands, preferred test prefixes, or commit/PR conventions).
