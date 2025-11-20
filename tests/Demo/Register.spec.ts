@@ -26,9 +26,9 @@ test('register with random data and save pass/fail screenshots', async ({ page }
   const telephone = randomPhone();
   const password = randomString(10) + 'A1!';
 
-  // ensure target screenshots directory exists in repo root: screenshots/demo
+  // ensure target screenshots directory exists in repo root: screenshots/Demo
   try {
-    const dir = path.join(process.cwd(), 'screenshots', 'demo');
+    const dir = path.join(process.cwd(), 'screenshots', 'Demo');
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   } catch (e) {
     // ignore directory creation errors — Playwright may still write files
@@ -70,14 +70,18 @@ test('register with random data and save pass/fail screenshots', async ({ page }
     // passed: wait 2s and take screenshot (use Playwright outputPath to ensure directory)
     await page.waitForTimeout(2000);
     const browserName = info.project && info.project.name ? info.project.name : 'browser';
-    const passPath = `screenshots/demo/register_${timestampForFile()}_${browserName}_PASSED.png`;
+    const passName = `register_${timestampForFile()}_${browserName}_PASSED.png`;
+    const passPath = path.join(process.cwd(), 'screenshots', 'Demo', passName);
     await page.screenshot({ path: passPath, fullPage: true });
+    console.log('Saved screenshot:', passPath);
   } catch (err) {
     // on failure: wait 2s, take screenshot and rethrow so Playwright marks test failed
     await page.waitForTimeout(2000).catch(() => {});
     const browserName = info.project && info.project.name ? info.project.name : 'browser';
-    const failPath = `screenshots/demo/register_${timestampForFile()}_${browserName}_FAILED.png`;
+    const failName = `register_${timestampForFile()}_${browserName}_FAILED.png`;
+    const failPath = path.join(process.cwd(), 'screenshots', 'Demo', failName);
     await page.screenshot({ path: failPath, fullPage: true }).catch(() => {});
+    console.log('Saved screenshot:', failPath);
     throw err;
   }
 });

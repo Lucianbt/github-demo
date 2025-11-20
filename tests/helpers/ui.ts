@@ -1,4 +1,6 @@
 import type { Page, Locator, TestInfo } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
 
 // Detects a validation error by checking common UI signals (heuristic)
 export async function hasRedOutline(pageOrElement: Page | Locator, fieldName?: string): Promise<boolean> {
@@ -110,9 +112,31 @@ export async function fillByJs(target: Locator, value: string) {
 // Centralized afterEach screenshot helper
 export async function screenshotAfterEach(page: Page, testInfo: TestInfo, folder: string) {
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(1000);
+  // Wait 2s to allow animations/async UI updates to settle before screenshot
+  await page.waitForTimeout(2000);
   const scenario = testInfo.title.replace(/[^a-z0-9]+/gi, '_');
   const status = testInfo.status || 'unknown';
-  const screenshotPath = `screenshots/${folder}/${status}-${scenario}-${testInfo.project.name}.png`;
+  // Allow overriding the base screenshots directory via env var.
+  // If SCREENSHOT_BASE_DIR is set it may be absolute or repo-relative. Otherwise default to repo/screenshots.
+  const envBase = process.env.SCREENSHOT_BASE_DIR;
+  const baseDir = envBase
+    ? (path.isAbsolute(envBase) ? envBase : path.join(process.cwd(), envBase))
+    : path.join(process.cwd(), 'screenshots');
+
+  const targetDir = path.join(baseDir, folder);
+  try {
+    if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
+  } catch (e) {
+    // ignore creation errors — Playwright may still write files
+  }
+
+  const screenshotPath = path.join(targetDir, `${status}-${scenario}-${testInfo.project.name}.png`);
   await page.screenshot({ path: screenshotPath, fullPage: true });
+  // Log saved path for visibility in test output
+  try {
+    // eslint-disable-next-line no-console
+    console.log('Saved screenshot:', screenshotPath);
+  } catch (e) {
+    // ignore logging errors
+  }
 }
