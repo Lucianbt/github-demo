@@ -2,35 +2,35 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-20T04:49:45 EET" name="Surefire suite" finished-at="2025-11-20T04:50:01 EET" duration-ms="16689">
+  <suite started-at="2025-11-22T00:18:47 EET" name="Surefire suite" finished-at="2025-11-22T00:19:04 EET" duration-ms="17460">
     <groups>
     </groups>
-    <test started-at="2025-11-20T04:49:45 EET" name="Surefire test" finished-at="2025-11-20T04:50:01 EET" duration-ms="16689">
-      <class name="com.githubdemo.academia.UserLoginTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:45 EET" name="setUp" finished-at="2025-11-20T04:49:46 EET" duration-ms="1186" status="PASS">
+    <test started-at="2025-11-22T00:18:47 EET" name="Surefire test" finished-at="2025-11-22T00:19:04 EET" duration-ms="17460">
+      <class name="com.githubdemo.academia.Contact">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-22T00:18:47 EET" name="setUp" finished-at="2025-11-22T00:18:49 EET" duration-ms="2709" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:46 EET" name="loginAndLogout" description="Login flow and settings navigation on academiatestarii.ro" finished-at="2025-11-20T04:49:59 EET" duration-ms="13155" status="PASS">
+        <test-method signature="contactFormTest()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-22T00:18:49 EET" name="contactFormTest" description="Contact form flow on academiatestarii.ro" finished-at="2025-11-22T00:19:02 EET" duration-ms="12470" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginAndLogout -->
-        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:49:59 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-20T04:50:01 EET" duration-ms="2159" status="PASS">
+        </test-method> <!-- contactFormTest -->
+        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-22T00:19:02 EET" name="takeScreenshotOnTestResult" finished-at="2025-11-22T00:19:04 EET" duration-ms="2097" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=loginAndLogout status=SUCCESS method=UserLoginTest.loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40] output={null}]]]>
+                <![CDATA[[TestResult name=contactFormTest status=SUCCESS method=Contact.contactFormTest()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenshotOnTestResult -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.UserLoginTest@7d68ef40]" started-at="2025-11-20T04:50:01 EET" name="tearDown" finished-at="2025-11-20T04:50:01 EET" duration-ms="169" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.Contact@12d3a4e9]" started-at="2025-11-22T00:19:04 EET" name="tearDown" finished-at="2025-11-22T00:19:04 EET" duration-ms="156" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.githubdemo.academia.UserLoginTest -->
+      </class> <!-- com.githubdemo.academia.Contact -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>
