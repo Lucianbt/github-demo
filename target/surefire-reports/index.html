@@ -145,11 +145,6 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Surefire suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Surefire test&quot; verbose=&quot;0&quot;&gt;
-    &lt;method-selectors&gt;
-      &lt;method-selector&gt;
-        &lt;selector-class name=&quot;org.apache.maven.surefire.testng.utils.MethodSelector&quot; priority=&quot;10000&quot;/&gt;
-      &lt;/method-selector&gt;
-    &lt;/method-selectors&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.githubdemo.academia.Contact&quot;/&gt;
     &lt;/classes&gt;
@@ -195,7 +190,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'contactFormTest')
 data.setCell(0, 2, 'com.githubdemo.academia.Contact')
-data.setCell(0, 3, 12470);
+data.setCell(0, 3, 12809);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
@@ -233,15 +228,15 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">contactFormTest</span>
-                <span class="method-start">2725 ms</span>
+                <span class="method-start">1628 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">takeScreenshotOnTestResult([TestResult name=contactFormTest status=SUCCESS method=Contact.contactFormTest()[pri:0, instance:com...)</span>
-                <span class="method-start">15195 ms</span>
+                <span class="method-start">14439 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">17292 ms</span>
+                <span class="method-start">16548 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

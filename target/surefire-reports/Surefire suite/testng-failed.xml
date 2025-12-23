@@ -3,14 +3,14 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.githubdemo.academia.UserLoginTest">
+      <class name="com.githubdemo.academia.Contact">
         <methods>
-          <include name="setUp"/>
-          <include name="loginAndLogout"/>
-          <include name="tearDown"/>
+          <include name="contactFormTest"/>
           <include name="takeScreenshotOnTestResult"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.githubdemo.academia.UserLoginTest -->
+      </class> <!-- com.githubdemo.academia.Contact -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
