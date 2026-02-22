@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="BestPracticesJavaSuite" parallel="methods" thread-count="3" verbose="1">
+    <test name="BestPracticesJavaTests">
+        <classes>
+            <class name="com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest"/>
+        </classes>
+    </test>
+</suite>

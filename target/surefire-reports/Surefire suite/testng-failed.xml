@@ -3,14 +3,13 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.githubdemo.academia.Contact">
+      <class name="com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest">
         <methods>
-          <include name="contactFormTest"/>
-          <include name="takeScreenshotOnTestResult"/>
-          <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="usesLocatorFirstAndWaitWithoutSleeps"/>
+          <include name="tearDownAndCaptureArtifacts"/>
         </methods>
-      </class> <!-- com.githubdemo.academia.Contact -->
+      </class> <!-- com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

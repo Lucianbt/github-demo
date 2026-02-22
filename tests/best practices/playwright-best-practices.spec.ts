@@ -18,6 +18,18 @@ test.describe('Playwright best practices with OOP', () => {
     await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
   });
 
+  // Demonstrates native Playwright interaction via locator.click().
+  test('uses native click method on Docs link', async ({ page }) => {
+    await page.goto('https://playwright.dev/');
+
+    const docsLink = page.getByRole('link', { name: 'Docs' });
+    await expect(docsLink).toBeVisible();
+    await docsLink.click();
+
+    await expect(page).toHaveURL(/.*\/docs\/intro/);
+    await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  });
+
   // Demonstrates polymorphism: one service drives multiple section implementations.
   test('demonstrates polymorphism through section navigation', async ({ page }) => {
     const navigationService = new NavigationService();
