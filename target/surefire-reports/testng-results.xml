@@ -2,62 +2,62 @@
 <testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-05-05T17:39:31 EEST" name="Surefire suite" finished-at="2026-05-05T17:40:07 EEST" duration-ms="35593">
+  <suite started-at="2026-05-05T17:41:01 EEST" name="Surefire suite" finished-at="2026-05-05T17:41:20 EEST" duration-ms="18968">
     <groups>
     </groups>
-    <test started-at="2026-05-05T17:39:31 EEST" name="Surefire test" finished-at="2026-05-05T17:40:07 EEST" duration-ms="35593">
+    <test started-at="2026-05-05T17:41:01 EEST" name="Surefire test" finished-at="2026-05-05T17:41:20 EEST" duration-ms="18968">
       <class name="com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:31 EEST" name="setUp" finished-at="2026-05-05T17:39:35 EEST" duration-ms="3523" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:01 EEST" name="setUp" finished-at="2026-05-05T17:41:03 EEST" duration-ms="1293" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="demonstratesPolymorphismThroughSectionNavigation()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:35 EEST" name="demonstratesPolymorphismThroughSectionNavigation" description="Polymorphism via NavigationService over section implementations" finished-at="2026-05-05T17:39:36 EEST" duration-ms="1307" status="PASS">
+        <test-method signature="demonstratesPolymorphismThroughSectionNavigation()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:03 EEST" name="demonstratesPolymorphismThroughSectionNavigation" description="Polymorphism via NavigationService over section implementations" finished-at="2026-05-05T17:41:03 EEST" duration-ms="674" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- demonstratesPolymorphismThroughSectionNavigation -->
-        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:36 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:39:36 EEST" duration-ms="132" status="PASS">
+        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:03 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:41:04 EEST" duration-ms="138" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=demonstratesPolymorphismThroughSectionNavigation status=SUCCESS method=SeleniumBestPracticesTest.demonstratesPolymorphismThroughSectionNavigation()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc] output={null}]]]>
+                <![CDATA[[TestResult name=demonstratesPolymorphismThroughSectionNavigation status=SUCCESS method=SeleniumBestPracticesTest.demonstratesPolymorphismThroughSectionNavigation()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownAndCaptureArtifacts -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:36 EEST" name="setUp" finished-at="2026-05-05T17:39:37 EEST" duration-ms="715" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:04 EEST" name="setUp" finished-at="2026-05-05T17:41:04 EEST" duration-ms="703" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="usesLocatorFirstAndWaitWithoutSleeps()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:37 EEST" name="usesLocatorFirstAndWaitWithoutSleeps" description="Locator-first + wait-driven navigation to Get started" finished-at="2026-05-05T17:39:38 EEST" duration-ms="921" status="PASS">
+        <test-method signature="usesLocatorFirstAndWaitWithoutSleeps()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:04 EEST" name="usesLocatorFirstAndWaitWithoutSleeps" description="Locator-first + wait-driven navigation to Get started" finished-at="2026-05-05T17:41:05 EEST" duration-ms="1131" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- usesLocatorFirstAndWaitWithoutSleeps -->
-        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:38 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:39:38 EEST" duration-ms="116" status="PASS">
+        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:05 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:41:06 EEST" duration-ms="119" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=usesLocatorFirstAndWaitWithoutSleeps status=SUCCESS method=SeleniumBestPracticesTest.usesLocatorFirstAndWaitWithoutSleeps()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc] output={null}]]]>
+                <![CDATA[[TestResult name=usesLocatorFirstAndWaitWithoutSleeps status=SUCCESS method=SeleniumBestPracticesTest.usesLocatorFirstAndWaitWithoutSleeps()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownAndCaptureArtifacts -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:38 EEST" name="setUp" finished-at="2026-05-05T17:39:39 EEST" duration-ms="712" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:06 EEST" name="setUp" finished-at="2026-05-05T17:41:06 EEST" duration-ms="713" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="usesNativeClickMethodOnDocsLink()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:39 EEST" name="usesNativeClickMethodOnDocsLink" description="Native Selenium click() on Docs link" finished-at="2026-05-05T17:39:39 EEST" duration-ms="555" status="PASS">
+        <test-method signature="usesNativeClickMethodOnDocsLink()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:06 EEST" name="usesNativeClickMethodOnDocsLink" description="Native Selenium click() on Docs link" finished-at="2026-05-05T17:41:07 EEST" duration-ms="545" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- usesNativeClickMethodOnDocsLink -->
-        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc]" started-at="2026-05-05T17:39:39 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:39:39 EEST" duration-ms="120" status="PASS">
+        <test-method is-config="true" signature="tearDownAndCaptureArtifacts(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3]" started-at="2026-05-05T17:41:07 EEST" name="tearDownAndCaptureArtifacts" finished-at="2026-05-05T17:41:07 EEST" duration-ms="122" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=usesNativeClickMethodOnDocsLink status=SUCCESS method=SeleniumBestPracticesTest.usesNativeClickMethodOnDocsLink()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@255b53dc] output={null}]]]>
+                <![CDATA[[TestResult name=usesNativeClickMethodOnDocsLink status=SUCCESS method=SeleniumBestPracticesTest.usesNativeClickMethodOnDocsLink()[pri:0, instance:com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest@3d121db3] output={null}]]]>
               </value>
             </param>
           </params>
@@ -66,36 +66,36 @@
         </test-method> <!-- tearDownAndCaptureArtifacts -->
       </class> <!-- com.githubdemo.academia.bestpractices.SeleniumBestPracticesTest -->
       <class name="com.githubdemo.academia.UserLoginTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.UserLoginTest@52aa2946]" started-at="2026-05-05T17:39:39 EEST" name="setUp" finished-at="2026-05-05T17:39:41 EEST" duration-ms="1351" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.githubdemo.academia.UserLoginTest@1e802ef9]" started-at="2026-05-05T17:41:07 EEST" name="setUp" finished-at="2026-05-05T17:41:08 EEST" duration-ms="726" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@52aa2946]" started-at="2026-05-05T17:39:41 EEST" name="loginAndLogout" description="Login flow and settings navigation on academiatestarii.ro" finished-at="2026-05-05T17:40:05 EEST" duration-ms="24092" status="FAIL">
+        <test-method signature="loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@1e802ef9]" started-at="2026-05-05T17:41:08 EEST" name="loginAndLogout" description="Login flow and settings navigation on academiatestarii.ro" finished-at="2026-05-05T17:41:18 EEST" duration-ms="10769" status="FAIL">
           <exception class="org.openqa.selenium.NoSuchSessionException">
             <message>
               <![CDATA[invalid session id: session deleted as the browser has closed the connection
 from disconnected: unable to send message to renderer
   (Session info: chrome=145.0.7632.76)
 Build info: version: '4.14.0', revision: 'e5a96349ce'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4a5107eefeeea0d4b6cae098448ad603, findElement {using=xpath, value=//span[contains(@class,'elementor-button-text') and normalize-space()='Intră în cont']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49980}, goog:processID: 26608, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49980/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4a5107eefeeea0d4b6cae098448ad603]]>
+Command: [26f4273041a1ba0d9b908011e4cc473f, findElement {using=xpath, value=//span[contains(@class,'elementor-button-text') and normalize-space()='Intră în cont']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64521}, goog:processID: 22796, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64521/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 26f4273041a1ba0d9b908011e4cc473f]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
 from disconnected: unable to send message to renderer
   (Session info: chrome=145.0.7632.76)
 Build info: version: '4.14.0', revision: 'e5a96349ce'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4a5107eefeeea0d4b6cae098448ad603, findElement {using=xpath, value=//span[contains(@class,'elementor-button-text') and normalize-space()='Intră în cont']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49980}, goog:processID: 26608, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49980/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4a5107eefeeea0d4b6cae098448ad603
+Command: [26f4273041a1ba0d9b908011e4cc473f, findElement {using=xpath, value=//span[contains(@class,'elementor-button-text') and normalize-space()='Intră în cont']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64521}, goog:processID: 22796, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64521/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 26f4273041a1ba0d9b908011e4cc473f
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
@@ -111,8 +111,8 @@ at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.
 at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
 at com.githubdemo.academia.UserLoginTest.loginAndLogout(UserLoginTest.java:56)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
 at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
@@ -121,7 +121,7 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 at org.testng.TestRunner.privateRun(TestRunner.java:848)
 at org.testng.TestRunner.run(TestRunner.java:621)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
@@ -148,11 +148,11 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginAndLogout -->
-        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.UserLoginTest@52aa2946]" started-at="2026-05-05T17:40:05 EEST" name="takeScreenshotOnTestResult" finished-at="2026-05-05T17:40:07 EEST" duration-ms="2008" status="FAIL">
+        <test-method is-config="true" signature="takeScreenshotOnTestResult(org.testng.ITestResult)[pri:0, instance:com.githubdemo.academia.UserLoginTest@1e802ef9]" started-at="2026-05-05T17:41:18 EEST" name="takeScreenshotOnTestResult" finished-at="2026-05-05T17:41:20 EEST" duration-ms="2013" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=loginAndLogout status=FAILURE method=UserLoginTest.loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@52aa2946] output={null}]]]>
+                <![CDATA[[TestResult name=loginAndLogout status=FAILURE method=UserLoginTest.loginAndLogout()[pri:0, instance:com.githubdemo.academia.UserLoginTest@1e802ef9] output={null}]]]>
               </value>
             </param>
           </params>
@@ -160,23 +160,23 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
             <message>
               <![CDATA[invalid session id
 Build info: version: '4.14.0', revision: 'e5a96349ce'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4a5107eefeeea0d4b6cae098448ad603, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49980}, goog:processID: 26608, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49980/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4a5107eefeeea0d4b6cae098448ad603]]>
+Command: [26f4273041a1ba0d9b908011e4cc473f, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64521}, goog:processID: 22796, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64521/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 26f4273041a1ba0d9b908011e4cc473f]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id
 Build info: version: '4.14.0', revision: 'e5a96349ce'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4a5107eefeeea0d4b6cae098448ad603, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49980}, goog:processID: 26608, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49980/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4a5107eefeeea0d4b6cae098448ad603
+Command: [26f4273041a1ba0d9b908011e4cc473f, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.76, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\Lucian\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64521}, goog:processID: 22796, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64521/devtoo..., se:cdpVersion: 145.0.7632.76, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 26f4273041a1ba0d9b908011e4cc473f
 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
@@ -188,8 +188,8 @@ at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:675)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:679)
 at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:325)
 at com.githubdemo.academia.UserLoginTest.takeScreenshotOnTestResult(UserLoginTest.java:127)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
 at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:390)
@@ -203,7 +203,7 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 at org.testng.TestRunner.privateRun(TestRunner.java:848)
 at org.testng.TestRunner.run(TestRunner.java:621)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
@@ -230,7 +230,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenshotOnTestResult -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.UserLoginTest@52aa2946]" started-at="2026-05-05T17:40:07 EEST" name="tearDown" finished-at="2026-05-05T17:40:07 EEST" duration-ms="0" status="SKIP">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.githubdemo.academia.UserLoginTest@1e802ef9]" started-at="2026-05-05T17:41:20 EEST" name="tearDown" finished-at="2026-05-05T17:41:20 EEST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

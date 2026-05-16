@@ -5,8 +5,8 @@
     <classes>
       <class name="com.githubdemo.academia.UserLoginTest">
         <methods>
-          <include name="loginAndLogout"/>
           <include name="setUp"/>
+          <include name="loginAndLogout"/>
           <include name="tearDown"/>
           <include name="takeScreenshotOnTestResult"/>
         </methods>
