@@ -1,1 +1,12 @@
+com\githubdemo\academia\bestpractices\ApiSection.class
+com\githubdemo\academia\TestNGRunner.class
+com\githubdemo\academia\Traineri.class
+com\githubdemo\academia\bestpractices\SectionNavigator.class
+com\githubdemo\academia\bestpractices\BasePage.class
 com\githubdemo\academia\UserLoginTest.class
+com\githubdemo\academia\Contact.class
+com\githubdemo\academia\bestpractices\DocsSection.class
+com\githubdemo\academia\bestpractices\DriverFactory.class
+com\githubdemo\academia\bestpractices\NavigationService.class
+com\githubdemo\academia\bestpractices\SeleniumBestPracticesTest.class
+com\githubdemo\academia\bestpractices\PlaywrightHomePage.class
